@@ -1,3 +1,4 @@
+require 'net/http'
 module ActsAsVideo::Video
   module Core
     def self.included(base)
@@ -8,15 +9,12 @@ module ActsAsVideo::Video
     end
 
     module ClassMethods
-      def initialize_acts_video_core
-        # video_hosts.map(&:to_s).each do
-        #   #Include module
-        # end
+      def initialize_acts_video_core        
+        attr :url
+        validates_presence_of :url, :on => [:create]
         
-        class_eval do
-          attr_accessor :url
-          #validates_presence_of :url, :on => [:create]          
-        end
+        self.extend Youtube
+        self.extend Vimeo     
       end
   
       def acts_as_video(*args)
@@ -34,27 +32,55 @@ module ActsAsVideo::Video
         domain = domain_from_url(url)
         raise "Unsupported Domain" unless video_hosts.include?(domain.to_sym)
         domain_from_url(url).capitalize.constantize rescue raise "Unsupported Domain"
-      end  
+      end
+      
+      def initialize_with_url(url)
+        video = self.new(:url => url)
+        video.set_embed_id_from_url url
+        video
+      end
+      
     end
     
     module InstanceMethods
       def url=(url)
-        debugger
         begin
-          host = self.class.class_from_url url
-        rescue "Unsupported Domain"
-          errors.add_to_base "Translation Here"
-        rescue "Invalid Url"
-          errors.add_to_base "Translation Here"
+          domain_class = self.class.class_from_url url          
+          self.type = domain_class.to_s
+          url.gsub(domain_class::EMBED_ID_REGEX) do
+            self.embed_id = $3
+          end
+          data = response
+          self.title = data['title']
+        rescue Exception => ex
+          case ex.message          
+            when "Unsupported Domain"
+              errors.add_to_base "Translation Here"
+            when "Invalid Url"
+              errors.add_to_base "Translation Here"
+            when "Video doesnt exist"
+              errors.add :url, "Translation Here"
+            else
+              raise ex
+          end
         end
       end
   
       def embed_url
-        raise NotImplementedError, "Can only call #embed_url on a subclass of acts_as_video class"
+        raise NotImplementedError, "Can only call #embed_url on a subclass of acts_as_video class" unless type
+        type.constantize.send :embed_url, embed_id
+      end
+      
+      def embed_code
+        response['html']
+      end  
+      
+      def response
+        uri = URI.parse(self.embed_url + "&maxwidth=720&maxheight=&maxheight=480")
+        res = Net::HTTP.get_response(uri)
+        raise "Video doesnt exist" unless res.code == '200'
+        JSON.parse(res.body)
       end
     end
   end
 end
-
-
-

@@ -24,25 +24,6 @@ describe Video do
     end
   end
   
-  describe '#new' do
-    context 'when youtube' do      
-      ['http://www.youtube.com/watch?v=qs0rqOo2Rdw'].each do |url|
-        let(:video) { Video.new({:url => url}) }
-        it "#{url} should be an instance of youtube" do
-          video.host.should == "Youtube"
-        end
-                
-        it "#{url} should set the embed_id" do
-          video.embed_id.should == 'qs0rqOo2Rdw'
-        end        
-      end
-      
-      context 'when the video doesn\'t exist' do
-        subject { Video.new(:url => 'http://www.youtube.com/watch?v=1234567890') }
-        it { should have(1).errors_on(:url) }
-      end      
-    end
-  end
   
   describe '#domain_from_url' do
     context "when valid url" do
@@ -66,7 +47,6 @@ describe Video do
                   {:url => 'www.27bslash6.abcdef/foggot.html', :domain => '27bslash6'}
                 ]
       domains.each do |url|
-        
         it "should raise invalid url error from #{url[:url]}" do
           lambda { Video.domain_from_url url[:url] }.should raise_error("Invalid Url")
         end
