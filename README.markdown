@@ -12,7 +12,7 @@ Create a model to use as a video and setup migration
     create_table :videos, :force => true do |t|
       t.column :title, :string
       t.column :embed_id, :string
-      t.column :type, :string
+      t.column :host, :string
       t.column :thumbnail_url, :string
     end  
 
