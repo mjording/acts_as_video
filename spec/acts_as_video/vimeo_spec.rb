@@ -8,6 +8,8 @@ describe Vimeo do
         it "#{url} should be an instance of vimeo" do
           video.type.should == "Vimeo"
           video.title.should == 'Tourism Whistler Commercial'
+          video.embed_code.should == '<iframe src="http://player.vimeo.com/video/17147129" width="720" height="405" frameborder="0"></iframe>' 
+          video.embed_code(200, 200).should == '<iframe src="http://player.vimeo.com/video/17147129" width="200" height="113" frameborder="0"></iframe>'   
         end
             
         it "#{url} should set the embed_id" do

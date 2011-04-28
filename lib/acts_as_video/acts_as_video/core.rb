@@ -52,6 +52,7 @@ module ActsAsVideo::Video
           end
           data = response
           self.title = data['title']
+          self.thumbnail_url = data['thumbnail_url']
         rescue Exception => ex
           case ex.message          
             when "Unsupported Domain"
@@ -71,12 +72,13 @@ module ActsAsVideo::Video
         type.constantize.send :embed_url, embed_id
       end
       
-      def embed_code
-        response['html']
+      def embed_code(width = 720, height = 480)
+        response({:maxwidth => width, :maxheight => height})['html']
       end  
       
-      def response
-        uri = URI.parse(self.embed_url + "&maxwidth=720&maxheight=&maxheight=480")
+      def response(options={})
+        arguments = options.map{ |key, value| "&#{key}=#{value}"}.join
+        uri = URI.parse(self.embed_url + arguments)
         res = Net::HTTP.get_response(uri)
         raise "Video doesnt exist" unless res.code == '200'
         JSON.parse(res.body)
