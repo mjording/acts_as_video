@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["anark"]
   s.date = %q{2011-04-28}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Create, Store, and Embed videos from different Oembed host using their url}
   s.email = %q{anark@comcast.net}
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -43,7 +43,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.4.1}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{Simple Rails video management}
   s.test_files = [
     "spec/acts_as_video/acts_as_video_spec.rb",
     "spec/acts_as_video/vimeo_spec.rb",
