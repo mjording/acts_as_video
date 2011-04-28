@@ -34,13 +34,23 @@ describe Video do
       its(:title) { should == 'Hi' }
     end
     
+    context "when invalid url" do
+      let(:video) {Video.new :url => 'www.27bslash6'}
+      subject { video }
+      it { should_not be_valid }
+      it "should have 1 error on url" do
+        video.errors[:url].size.should == 1
+        video.errors[:url].should include("Invalid Url")
+      end
+    end
+    
     context "when unsupported url" do
       let(:video) {Video.new :url => 'www.27bslash6.com/foggot.html'}
       subject { video }
       it { should_not be_valid }
       it "should have 1 error on url" do
         video.errors[:url].size.should == 1
-        video.errors[:url].should include("Translation Here")
+        video.errors[:url].should include("Unsupported Domain, supported video hosts are vimeo, youtube")
       end
     end
     
@@ -50,7 +60,7 @@ describe Video do
       it { should_not be_valid }
       it "should have 1 error on url" do
         video.errors[:url].size.should == 1
-        video.errors[:url].should include("Translation Here")
+        video.errors[:url].should include("Unsupported Domain, supported video hosts are vimeo")
       end
     end
     
@@ -62,7 +72,7 @@ describe Video do
       it { should_not be_valid }
       it "should have 1 error on url" do
         video.errors[:url].size.should == 1
-        video.errors[:url].should include("Translation Here")
+        video.errors[:url].should include("Video not found")
       end
     end
   end

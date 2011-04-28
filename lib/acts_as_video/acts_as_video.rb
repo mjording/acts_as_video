@@ -45,11 +45,11 @@ module ActsAsVideo
       rescue Exception => ex
         case ex.message          
           when "Unsupported Domain"
-            self.errors.add :url, "Translation Here"
+            self.errors.add :url, "Unsupported Domain, supported video hosts are #{self.class.video_hosts.join(', ')}"
           when "Invalid Url"
-            self.errors.add :url, "Translation Here"
+            self.errors.add :url, "Invalid Url"
           when "Video doesnt exist"
-            self.errors.add :url, "Translation Here"
+            self.errors.add :url, "Video not found"
           else
             raise ex
         end
