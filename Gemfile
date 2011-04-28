@@ -8,6 +8,9 @@ gem 'json',               '1.4.6'
 # Include everything needed to run rake, tests, features, etc.
 group :development do
   gem 'rails',        '3.0.5'
+  gem "mocha"
+  gem "fakeweb"
+  gem "fakeweb-matcher"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'mysql'
   gem 'ruby-debug'
