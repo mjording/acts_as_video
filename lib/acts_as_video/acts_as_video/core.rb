@@ -55,9 +55,9 @@ module ActsAsVideo::Video
         rescue Exception => ex
           case ex.message          
             when "Unsupported Domain"
-              errors.add_to_base "Translation Here"
+              errors.add :base, "Translation Here"
             when "Invalid Url"
-              errors.add_to_base "Translation Here"
+              errors.add :base, "Translation Here"
             when "Video doesnt exist"
               errors.add :url, "Translation Here"
             else
