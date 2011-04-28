@@ -12,9 +12,6 @@ module ActsAsVideo
       
       self.video_hosts = (options[:video_hosts] || [:vimeo, :youtube])
       
-      self.extend Youtube
-      self.extend Vimeo
-      
       send :include, InstanceMethods
 
       private
