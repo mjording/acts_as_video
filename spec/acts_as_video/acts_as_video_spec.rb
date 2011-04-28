@@ -30,7 +30,7 @@ describe Video do
       FakeWeb.register_uri(:get, Vimeo.embed_url(vid_id), :status => ["200", "OK"], :body => {:title => "Hi"}.to_json)
       subject { Video.new :url => "vimeo.com/#{vid_id}" }
       it { should be_valid }
-      its(:type) { should == 'Vimeo' }
+      its(:host) { should == 'Vimeo' }
       its(:title) { should == 'Hi' }
     end
     

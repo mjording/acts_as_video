@@ -9,7 +9,7 @@ describe Youtube do
       let(:video) { Video.new :url => 'http://www.youtube.com/watch?v=qs0rqOo2Rdw' }
       subject { video }
       it { should be_valid }
-      its(:type) { should == "Youtube"}
+      its(:host) { should == "Youtube"}
       its(:title) { should == 'Opening Day Shred Madness - Whistler/Blackcomb Opening Day 2010/2011' }
       its(:thumbnail_url) { should == 'http://i2.ytimg.com/vi/qs0rqOo2Rdw/hqdefault.jpg' }
       its(:embed_code) { should == "<object width=\"720\" height=\"430\"><param name=\"movie\" value=\"http://www.youtube.com/v/qs0rqOo2Rdw?version=3\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/qs0rqOo2Rdw?version=3\" type=\"application/x-shockwave-flash\" width=\"720\" height=\"430\" allowscriptaccess=\"always\" allowfullscreen=\"true\"></embed></object>"}

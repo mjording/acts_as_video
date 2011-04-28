@@ -33,7 +33,7 @@ module ActsAsVideo
     def url=(url)
       begin
         domain_class = self.class.send :class_from_url, url          
-        self.type = domain_class.to_s
+        self.host = domain_class.to_s
         self.embed_id = embed_id_from_url(url, domain_class)
         data = response
         self.title = data['title']
@@ -67,8 +67,8 @@ module ActsAsVideo
     end  
 
     def embed_url
-      raise NotImplementedError, "Can only call #embed_url on a subclass of acts_as_video class" unless type
-      type.constantize.send :embed_url, embed_id
+      raise NotImplementedError, "Can only call #embed_url on a subclass of acts_as_video class" unless host
+      host.constantize.send :embed_url, embed_id
     end
     
     def response(options={})

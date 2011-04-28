@@ -9,7 +9,7 @@ describe Vimeo do
       let(:video) { Video.new(:url => 'http://www.vimeo.com/17147129') }
       subject { video }
       it { should be_valid }
-      its(:type) { should == "Vimeo"}
+      its(:host) { should == "Vimeo"}
       its(:title) { should == 'Tourism Whistler Commercial' }
       its(:thumbnail_url) { should == 'http://b.vimeocdn.com/ts/106/104/106104409_640.jpg' }
       its(:embed_code) { should == '<iframe src="http://player.vimeo.com/video/17147129" width="720" height="405" frameborder="0"></iframe>'}
