@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "acts_as_video"
   gem.homepage = "http://github.com/anark/acts_as_video"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Simple Rails video management"
+  gem.description = "Create, Store, and Embed videos from different Oembed host using their url"
   gem.email = "anark@comcast.net"
   gem.authors = ["anark"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
