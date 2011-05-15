@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["anark"]
-  s.date = %q{2011-04-28}
+  s.date = %q{2011-05-15}
   s.description = %q{Create, Store, and Embed videos from different Oembed host using their url}
   s.email = %q{anark@comcast.net}
   s.extra_rdoc_files = [
@@ -42,62 +42,24 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/anark/acts_as_video}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.1}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Simple Rails video management}
-  s.test_files = [
-    "spec/acts_as_video/acts_as_video_spec.rb",
-    "spec/acts_as_video/vimeo_spec.rb",
-    "spec/acts_as_video/youtube_spec.rb",
-    "spec/models.rb",
-    "spec/schema.rb",
-    "spec/spec_helper.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<json>, ["= 1.4.6"])
-      s.add_development_dependency(%q<rails>, ["= 3.0.5"])
-      s.add_development_dependency(%q<mocha>, [">= 0"])
-      s.add_development_dependency(%q<fakeweb>, [">= 0"])
-      s.add_development_dependency(%q<fakeweb-matcher>, [">= 0"])
-      s.add_development_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_development_dependency(%q<mysql>, [">= 0"])
-      s.add_development_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_development_dependency(%q<shoulda-matchers>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<rspec>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
     else
-      s.add_dependency(%q<json>, ["= 1.4.6"])
-      s.add_dependency(%q<rails>, ["= 3.0.5"])
-      s.add_dependency(%q<mocha>, [">= 0"])
-      s.add_dependency(%q<fakeweb>, [">= 0"])
-      s.add_dependency(%q<fakeweb-matcher>, [">= 0"])
-      s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-      s.add_dependency(%q<mysql>, [">= 0"])
-      s.add_dependency(%q<ruby-debug>, [">= 0"])
-      s.add_dependency(%q<shoulda-matchers>, [">= 0"])
-      s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<rspec>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<rcov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<json>, ["= 1.4.6"])
-    s.add_dependency(%q<rails>, ["= 3.0.5"])
-    s.add_dependency(%q<mocha>, [">= 0"])
-    s.add_dependency(%q<fakeweb>, [">= 0"])
-    s.add_dependency(%q<fakeweb-matcher>, [">= 0"])
-    s.add_dependency(%q<sqlite3-ruby>, [">= 0"])
-    s.add_dependency(%q<mysql>, [">= 0"])
-    s.add_dependency(%q<ruby-debug>, [">= 0"])
-    s.add_dependency(%q<shoulda-matchers>, [">= 0"])
-    s.add_dependency(%q<rspec>, ["~> 2.3.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<rspec>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<rcov>, [">= 0"])
   end
 end
